@@ -1,10 +1,8 @@
 ---
 // Component Imports
-import { Image } from "astro:assets";
-import Counter from "../components/Counter";
-const someProps = {
-  count: 0,
-};
+
+import JollyRoger from "../components/JollyRoger";
+import { ViewTransitions, fade } from "astro:transitions";
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
@@ -16,36 +14,27 @@ const someProps = {
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>My home</title>
+
+    <ViewTransitions />
+
     <style>
       html,
       body {
         font-family: system-ui;
         margin: 0;
-        background-color: #1f1f1f;
+        background-color: #0c0f13;
       }
       body {
         padding: 2rem;
       }
     </style>
   </head>
-  <body>
-    <main class="">
+  <body transition:animate={fade({ duration: "0.4s" })}>
+    <!-- <body transition:animate="fade"> -->
+    <main>
       <div class="flex h-screen flex flex-col items-center justify-center">
-        <a href="/pirates-home" class="peer">
-          <Image
-            class="transition ease-in-out duration-500 grayscale hover:grayscale-0 hover:cursor-pointer"
-            src="/jolly-roger.png"
-            alt="Jolly roger figure"
-            width="200"
-            height="200"
-          />
-        </a>
-        <quote
-          class="opacity-0 ease-in-out duration-500 peer-hover:opacity-100 text-slate-50 text-lg mt-20"
-        >
-          “If there’s a man among ye, ye’ll come up and fight like the man ye
-          are to be!” ― Mary Read
-        </quote>
+        <JollyRoger client:load />
       </div>
     </main>
   </body>

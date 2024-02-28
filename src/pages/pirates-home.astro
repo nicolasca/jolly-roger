@@ -1,12 +1,19 @@
 ---
-
+import { ViewTransitions, fade } from "astro:transitions";
 ---
 
 <html lang="en">
   <head>
     <title>My Homepage</title>
+    <ViewTransitions />
   </head>
-  <body>
-    <h1>Welcome to my website!</h1>
+
+  <body transition:animate={fade({ duration: "0.4s" })}>
+    <!-- <body transition:animate="fade"> -->
+    <main>
+      <div class="flex h-screen flex flex-col items-center justify-center">
+        <h1>The pirates</h1>
+      </div>
+    </main>
   </body>
 </html>
