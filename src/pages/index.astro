@@ -1,0 +1,52 @@
+---
+// Component Imports
+import { Image } from "astro:assets";
+import Counter from "../components/Counter";
+const someProps = {
+  count: 0,
+};
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/core-concepts/astro-components/
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+      html,
+      body {
+        font-family: system-ui;
+        margin: 0;
+        background-color: #1f1f1f;
+      }
+      body {
+        padding: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="">
+      <div class="flex h-screen flex flex-col items-center justify-center">
+        <a href="/pirates-home" class="peer">
+          <Image
+            class="transition ease-in-out duration-500 grayscale hover:grayscale-0 hover:cursor-pointer"
+            src="/jolly-roger.png"
+            alt="Jolly roger figure"
+            width="200"
+            height="200"
+          />
+        </a>
+        <quote
+          class="opacity-0 ease-in-out duration-500 peer-hover:opacity-100 text-slate-50 text-lg mt-20"
+        >
+          “If there’s a man among ye, ye’ll come up and fight like the man ye
+          are to be!” ― Mary Read
+        </quote>
+      </div>
+    </main>
+  </body>
+</html>
