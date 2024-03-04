@@ -29,6 +29,7 @@ export default function JollyRoger() {
           alt="Jolly roger figure"
           width="200"
           height="200"
+          style={{ viewTransitionName: "pirate" }}
         />
       </a>
       <blockquote className="opacity-0 ease-in-out duration-500 peer-hover:opacity-100 text-slate-50 text-lg mt-20">

@@ -1,5 +1,8 @@
 ---
 import { ViewTransitions, fade } from "astro:transitions";
+import jollyRoger from "../assets/images/jolly-roger-cartoon.png";
+import { slide } from "astro:transitions";
+import PirateScene from "../components/PirateScene.jsx";
 ---
 
 <html lang="en">
@@ -8,11 +11,21 @@ import { ViewTransitions, fade } from "astro:transitions";
     <ViewTransitions />
   </head>
 
-  <body transition:animate={fade({ duration: "0.4s" })}>
+  <body>
     <!-- <body transition:animate="fade"> -->
     <main>
-      <div class="flex h-screen flex flex-col items-center justify-center">
-        <h1>The pirates</h1>
+      <!-- <div class="absolute">
+        <img
+          class="transition-all transition-duration-500"
+          transition:name="pirate"
+          src={jollyRoger.src}
+          alt="Jolly roger figure"
+          width="200"
+          height="200"
+        />
+      </div> -->
+      <div class="w-100 h-screen">
+        <PirateScene client:load />
       </div>
     </main>
   </body>
