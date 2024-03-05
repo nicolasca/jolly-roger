@@ -1,22 +1,10 @@
 import * as React from "react";
 import jollyRoger from "../assets/images/jolly-roger-cartoon.png";
 import audioFile from "../assets/audio/drunken-sailor.mp3";
+import { usePiratesStore } from "../stores/usePirates";
 
 export default function JollyRoger() {
-  const audioRef = React.useRef<HTMLAudioElement>(null);
-  const playSound = () => {
-    if (audioRef.current) {
-      audioRef.current.volume = 0.1;
-      audioRef.current.play();
-    }
-  };
-
-  const stopSound = () => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-      // audioRef.current.currentTime = 0; // Rewind to the start
-    }
-  };
+  const playMusic = usePiratesStore((state) => state.playMusic);
 
   return (
     <>
@@ -24,8 +12,7 @@ export default function JollyRoger() {
         <img
           className="transition ease-in-out duration-500 grayscale hover:grayscale-0 hover:cursor-pointer"
           src={jollyRoger.src}
-          onMouseEnter={playSound}
-          onMouseLeave={stopSound}
+          onClick={playMusic}
           alt="Jolly roger figure"
           width="200"
           height="200"
@@ -36,7 +23,6 @@ export default function JollyRoger() {
         “If there’s a man among ye, ye’ll come up and fight like the man ye are
         to be!” ― Mary Read
       </blockquote>
-      <audio ref={audioRef} src={audioFile} />
     </>
   );
 }

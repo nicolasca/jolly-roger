@@ -3,7 +3,7 @@
 
 import JollyRoger from "../components/JollyRoger";
 import { ViewTransitions, fade } from "astro:transitions";
-import jollyRoger from "../assets/images/jolly-roger-cartoon.png";
+import MusicPlayer from "../components/MusicPlayer";
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
@@ -36,6 +36,8 @@ import jollyRoger from "../assets/images/jolly-roger-cartoon.png";
     <main>
       <div class="flex h-screen flex flex-col items-center justify-center">
         <JollyRoger client:load />
+        <MusicPlayer client:load transition:persist="media-player" />
+        <h1 class="absolute">La mer</h1>
       </div>
     </main>
   </body>

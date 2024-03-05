@@ -3,6 +3,7 @@ import { ViewTransitions, fade } from "astro:transitions";
 import jollyRoger from "../assets/images/jolly-roger-cartoon.png";
 import { slide } from "astro:transitions";
 import PirateScene from "../components/PirateScene.jsx";
+import MusicPlayer from "../components/MusicPlayer.jsx";
 ---
 
 <html lang="en">
@@ -14,18 +15,10 @@ import PirateScene from "../components/PirateScene.jsx";
   <body>
     <!-- <body transition:animate="fade"> -->
     <main>
-      <!-- <div class="absolute">
-        <img
-          class="transition-all transition-duration-500"
-          transition:name="pirate"
-          src={jollyRoger.src}
-          alt="Jolly roger figure"
-          width="200"
-          height="200"
-        />
-      </div> -->
-      <div class="w-100 h-screen">
+      <div class="w-100 h-screen relative">
         <PirateScene client:load />
+        <MusicPlayer client:load transition:persist="media-player" />
+        <h1 class="absolute top-0">La mer</h1>
       </div>
     </main>
   </body>

@@ -6,13 +6,14 @@ import React, { useRef, useState } from "react";
 import { Trail, useGLTF } from "@react-three/drei";
 import { useKeyboardControls } from "./useKeyboardControls";
 import { useFrame, extend } from "@react-three/fiber";
+import * as THREE from "three"
 
 export default function Model() {
   const group = useRef();
+  const [smoothedCameraPosition] = useState(() => new THREE.Vector3(1, 1, 1))
+  const [smoothedCameraTarget] = useState(() => new THREE.Vector3())
 
-  const { nodes, materials } = useGLTF(
-    "https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/ship-dark/model.gltf"
-  );
+  const { nodes, materials } = useGLTF("/models/ship.gltf");
   const { left, right, up, down, space } = useKeyboardControls(); // Updated to include space state
 
   const rotationSpeed = 0.05;
@@ -67,13 +68,30 @@ export default function Model() {
       group.current.position.z -= Math.cos(rotation) * shipSpeed;
       group.current.position.x -= Math.sin(rotation) * shipSpeed;
     }
+
+    const bodyPosition = group.current.position
+    const cameraPosition = new THREE.Vector3()
+    cameraPosition.copy(bodyPosition)
+    cameraPosition.z += 30.25
+    cameraPosition.y += 40.65
+    cameraPosition.x += -10.65
+
+    const cameraTarget = new THREE.Vector3()
+    cameraTarget.copy(bodyPosition)
+    cameraTarget.y += 0.25
+
+    smoothedCameraPosition.lerp(cameraPosition, 5 * delta)
+    smoothedCameraTarget.lerp(cameraTarget, 5 * delta)
+
+    state.camera.position.copy(smoothedCameraPosition)
+    state.camera.lookAt(smoothedCameraTarget)
   });
 
   return (
     <>
       <Trail
-        width={12}
-        length={8}
+        width={20}
+        length={6}
         color={"white"}
         attenuation={(t) => {
           return t * t;
@@ -326,6 +344,4 @@ export default function Model() {
   );
 }
 
-useGLTF.preload(
-  "https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/ship-dark/model.gltf"
-);
+useGLTF.preload("/models/ship.gltf");
